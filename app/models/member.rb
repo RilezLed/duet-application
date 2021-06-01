@@ -11,4 +11,8 @@
 #  instrumnet_id :integer
 #
 class Member < ApplicationRecord
+  belongs_to(:duet, {
+    :class_name => "Duet",
+    :foreign_key => "duet_id"
+  })
 end

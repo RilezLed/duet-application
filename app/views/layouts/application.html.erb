@@ -24,7 +24,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <style>
-    body { padding-bottom: 70px; background-color:black }
+    body { padding-bottom: 70px; background: linear-gradient(180deg, rgba(2,0,36,1) 0%, rgba(0,0,0,1) 35%, rgba(83,177,215,1) 100%);
+ }
   </style>
 </head>
 
@@ -32,10 +33,10 @@
   <%= render "shared/navbar" %>
 
   <div class="container">
-  <div class="p-3 mb-2 bg-dark text-white">
+  <div class="p-3 mb-2 bg-black text-white">
     <%= render "shared/flashes" %>
-
     <%= yield %>
+    
     </div>
   </div>
 

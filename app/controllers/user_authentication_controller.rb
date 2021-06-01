@@ -6,6 +6,14 @@ class UserAuthenticationController < ApplicationController
     render({ :template => "user_authentication/sign_in.html.erb" })
   end
 
+  def index 
+    matching_users = User.all
+
+    @list_of_users = matching_users.order({ :created_at => :desc })
+
+    render({ :template => "user_authentication/index.html.erb" })
+  end
+
   def create_cookie
     user = User.where({ :email => params.fetch("query_email") }).first
     
