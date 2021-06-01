@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
 
-
+  get("/", { :controller => "duets", :action => "index" })
 
   # Routes for the Talent resource:
 
