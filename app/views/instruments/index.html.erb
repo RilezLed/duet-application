@@ -1,0 +1,102 @@
+<div>
+  <div>
+    <h1>
+      List of all instruments
+    </h1>
+  </div>
+</div>
+
+<hr>
+
+<div>
+  <div>
+    <h2>
+      Add a new instrument
+    </h2>
+
+    <form action="/insert_instrument" method="post">
+      <div>
+        <label for="instrument_name_box">
+          Instrument name
+        </label>
+
+        <input type="text" id="instrument_name_box" name="query_instrument_name">
+      </div>
+
+      <div>
+        <label for="genre_box">
+          Genre
+        </label>
+
+        <input type="text" id="genre_box" name="query_genre">
+      </div>
+
+      <button>
+        Create instrument
+      </button>
+    </form>
+  </div>
+</div>
+
+<hr>
+<div>
+  <div>
+    <table>
+      <tr>
+        <th>
+          ID
+        </th>
+
+        <th>
+          Instrument name
+        </th>
+
+        <th>
+          Genre
+        </th>
+
+        <th>
+          Created at
+        </th>
+
+        <th>
+          Updated at
+        </th>
+
+        <th>
+        </th>
+      </tr>
+
+      <% @list_of_instruments.each do |an_instrument| %>
+      <tr>
+        <td>
+          <%= an_instrument.id %>
+        </td>
+
+        <td>
+          <%= an_instrument.instrument_name %>
+        </td>
+
+        <td>
+          <%= an_instrument.genre %>
+        </td>
+
+        <td>
+          <%= time_ago_in_words(an_instrument.created_at) %> ago
+        </td>
+        <td>
+          <%= time_ago_in_words(an_instrument.updated_at) %> ago
+        </td>
+
+        <td>
+          <a href="/instruments/<%= an_instrument.id %>">
+            Show details
+          </a>
+        </td>
+      </tr>
+      <% end %>
+    </table>
+  </div>
+</div>
+
+<hr>

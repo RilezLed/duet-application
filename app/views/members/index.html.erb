@@ -1,0 +1,132 @@
+<div>
+  <div>
+    <h1>
+      List of all members
+    </h1>
+  </div>
+</div>
+
+<hr>
+
+<div>
+  <div>
+    <h2>
+      Add a new member
+    </h2>
+
+    <form action="/insert_member" method="post">
+      <div>
+        <label for="bandmate_id_box">
+          Bandmate
+        </label>
+
+        <input type="text" id="bandmate_id_box" name="query_bandmate_id">
+      </div>
+
+      <div>
+        <label for="duet_id_box">
+          Duet
+        </label>
+
+        <input type="text" id="duet_id_box" name="query_duet_id">
+      </div>
+
+      <div>
+        <label for="instrumnet_id_box">
+          Instrumnet
+        </label>
+
+        <input type="text" id="instrumnet_id_box" name="query_instrumnet_id">
+      </div>
+
+      <div>
+        <input type="checkbox" id="open_box" name="query_open" value="1">
+
+        <label for="open_box">Open</label>
+      </div>
+
+      <button>
+        Create member
+      </button>
+    </form>
+  </div>
+</div>
+
+<hr>
+<div>
+  <div>
+    <table>
+      <tr>
+        <th>
+          ID
+        </th>
+
+        <th>
+          Bandmate
+        </th>
+
+        <th>
+          Duet
+        </th>
+
+        <th>
+          Instrumnet
+        </th>
+
+        <th>
+          Open
+        </th>
+
+        <th>
+          Created at
+        </th>
+
+        <th>
+          Updated at
+        </th>
+
+        <th>
+        </th>
+      </tr>
+
+      <% @list_of_members.each do |a_member| %>
+      <tr>
+        <td>
+          <%= a_member.id %>
+        </td>
+
+        <td>
+          <%= a_member.bandmate_id %>
+        </td>
+
+        <td>
+          <%= a_member.duet_id %>
+        </td>
+
+        <td>
+          <%= a_member.instrumnet_id %>
+        </td>
+
+        <td>
+          <%= a_member.open %>
+        </td>
+
+        <td>
+          <%= time_ago_in_words(a_member.created_at) %> ago
+        </td>
+        <td>
+          <%= time_ago_in_words(a_member.updated_at) %> ago
+        </td>
+
+        <td>
+          <a href="/members/<%= a_member.id %>">
+            Show details
+          </a>
+        </td>
+      </tr>
+      <% end %>
+    </table>
+  </div>
+</div>
+
+<hr>

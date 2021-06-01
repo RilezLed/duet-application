@@ -1,0 +1,116 @@
+<div>
+  <div>
+    <h1>
+      Request #<%= @the_request.id %> details
+    </h1>
+
+    <div>
+      <div>
+        <a href="/requests">
+          Go back
+        </a>
+      </div>
+
+      <div>
+        <a href="/delete_request/<%= @the_request.id %>">
+          Delete request
+        </a>
+      </div>
+    </div>
+
+    <dl>
+      <dt>
+        Requestor
+      </dt>
+      <dd>
+        <%= @the_request.requestor_id %>
+      </dd>
+
+      <dt>
+        Group
+      </dt>
+      <dd>
+        <%= @the_request.group_id %>
+      </dd>
+
+      <dt>
+        Instrument
+      </dt>
+      <dd>
+        <%= @the_request.instrument_id %>
+      </dd>
+
+      <dt>
+        Status
+      </dt>
+      <dd>
+        <%= @the_request.status %>
+      </dd>
+
+      <dt>
+        Created at
+      </dt>
+      <dd>
+        <%= time_ago_in_words(@the_request.created_at) %> ago
+      </dd>
+
+      <dt>
+        Updated at
+      </dt>
+      <dd>
+        <%= time_ago_in_words(@the_request.updated_at) %> ago
+      </dd>
+    </dl>
+  </div>
+</div>
+
+<hr>
+
+
+<div>
+  <div>
+    <h2>
+      Edit request
+    </h2>
+
+    <form action="/modify_request/<%= @the_request.id %>"  method="post" >
+      <div>
+        <label for="requestor_id_box">
+          Requestor
+        </label>
+
+        <input type="text" id="requestor_id_box" name="query_requestor_id" value="<%= @the_request.requestor_id %>">
+      </div>
+
+      <div>
+        <label for="group_id_box">
+          Group
+        </label>
+
+        <input type="text" id="group_id_box" name="query_group_id" value="<%= @the_request.group_id %>">
+      </div>
+
+      <div>
+        <label for="instrument_id_box">
+          Instrument
+        </label>
+
+        <input type="text" id="instrument_id_box" name="query_instrument_id" value="<%= @the_request.instrument_id %>">
+      </div>
+
+      <div>
+        <label for="status_box">
+          Status
+        </label>
+
+        <input type="text" id="status_box" name="query_status" value="<%= @the_request.status %>">
+      </div>
+
+      <button>
+        Update request
+      </button>
+    </form>
+  </div>
+</div>
+
+<hr>

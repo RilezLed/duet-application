@@ -1,0 +1,116 @@
+<div>
+  <div>
+    <h1>
+      Duet #<%= @the_duet.id %> details
+    </h1>
+
+    <div>
+      <div>
+        <a href="/duets">
+          Go back
+        </a>
+      </div>
+
+      <div>
+        <a href="/delete_duet/<%= @the_duet.id %>">
+          Delete duet
+        </a>
+      </div>
+    </div>
+
+    <dl>
+      <dt>
+        Creator
+      </dt>
+      <dd>
+        <%= @the_duet.creator_id %>
+      </dd>
+
+      <dt>
+        Song
+      </dt>
+      <dd>
+        <%= @the_duet.song_id %>
+      </dd>
+
+      <dt>
+        Private
+      </dt>
+      <dd>
+        <%= @the_duet.private %>
+      </dd>
+
+      <dt>
+        Looking
+      </dt>
+      <dd>
+        <%= @the_duet.looking %>
+      </dd>
+
+      <dt>
+        Created at
+      </dt>
+      <dd>
+        <%= time_ago_in_words(@the_duet.created_at) %> ago
+      </dd>
+
+      <dt>
+        Updated at
+      </dt>
+      <dd>
+        <%= time_ago_in_words(@the_duet.updated_at) %> ago
+      </dd>
+    </dl>
+  </div>
+</div>
+
+<hr>
+
+
+<div>
+  <div>
+    <h2>
+      Edit duet
+    </h2>
+
+    <form action="/modify_duet/<%= @the_duet.id %>"  method="post" >
+      <div>
+        <label for="creator_id_box">
+          Creator
+        </label>
+
+        <input type="text" id="creator_id_box" name="query_creator_id" value="<%= @the_duet.creator_id %>">
+      </div>
+
+      <div>
+        <label for="song_id_box">
+          Song
+        </label>
+
+        <input type="text" id="song_id_box" name="query_song_id" value="<%= @the_duet.song_id %>">
+      </div>
+
+      <div>
+        <input type="checkbox" id="private_box" name="query_private" value="1" <%= "checked" if @the_duet.private %>>
+
+        <label for="private_box">
+            Private
+        </label>
+      </div>
+
+      <div>
+        <input type="checkbox" id="looking_box" name="query_looking" value="1" <%= "checked" if @the_duet.looking %>>
+
+        <label for="looking_box">
+            Looking
+        </label>
+      </div>
+
+      <button>
+        Update duet
+      </button>
+    </form>
+  </div>
+</div>
+
+<hr>

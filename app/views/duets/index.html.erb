@@ -1,0 +1,130 @@
+<div>
+  <div>
+    <h1>
+      List of all duets
+    </h1>
+  </div>
+</div>
+
+<hr>
+
+<div>
+  <div>
+    <h2>
+      Add a new duet
+    </h2>
+
+    <form action="/insert_duet" method="post">
+      <div>
+        <label for="creator_id_box">
+          Creator
+        </label>
+
+        <input type="text" id="creator_id_box" name="query_creator_id">
+      </div>
+
+      <div>
+        <label for="song_id_box">
+          Song
+        </label>
+
+        <input type="text" id="song_id_box" name="query_song_id">
+      </div>
+
+      <div>
+        <input type="checkbox" id="private_box" name="query_private" value="1">
+
+        <label for="private_box">Private</label>
+      </div>
+
+      <div>
+        <input type="checkbox" id="looking_box" name="query_looking" value="1">
+
+        <label for="looking_box">Looking</label>
+      </div>
+
+      <button>
+        Create duet
+      </button>
+    </form>
+  </div>
+</div>
+
+<hr>
+<div>
+  <div>
+    <table>
+      <tr>
+        <th>
+          ID
+        </th>
+
+        <th>
+          Creator
+        </th>
+
+        <th>
+          Song
+        </th>
+
+        <th>
+          Private
+        </th>
+
+        <th>
+          Looking
+        </th>
+
+        <th>
+          Created at
+        </th>
+
+        <th>
+          Updated at
+        </th>
+
+        <th>
+        </th>
+      </tr>
+
+      <% @list_of_duets.each do |a_duet| %>
+      <tr>
+        <td>
+          <%= a_duet.id %>
+        </td>
+
+        <td>
+          <%= a_duet.creator_id %>
+        </td>
+
+        <td>
+          <%= a_duet.song_id %>
+        </td>
+
+        <td>
+          <%= a_duet.private %>
+        </td>
+
+        <td>
+          <%= a_duet.looking %>
+        </td>
+
+        <td>
+          <%= time_ago_in_words(a_duet.created_at) %> ago
+        </td>
+        <td>
+          <%= time_ago_in_words(a_duet.updated_at) %> ago
+        </td>
+
+        <td>
+          <a href="/duets/<%= a_duet.id %>">
+            Show details
+          </a>
+        </td>
+      </tr>
+      <% end %>
+    </table>
+  </div>
+</div>
+
+<hr>

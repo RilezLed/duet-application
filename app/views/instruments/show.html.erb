@@ -1,0 +1,86 @@
+<div>
+  <div>
+    <h1>
+      Instrument #<%= @the_instrument.id %> details
+    </h1>
+
+    <div>
+      <div>
+        <a href="/instruments">
+          Go back
+        </a>
+      </div>
+
+      <div>
+        <a href="/delete_instrument/<%= @the_instrument.id %>">
+          Delete instrument
+        </a>
+      </div>
+    </div>
+
+    <dl>
+      <dt>
+        Instrument name
+      </dt>
+      <dd>
+        <%= @the_instrument.instrument_name %>
+      </dd>
+
+      <dt>
+        Genre
+      </dt>
+      <dd>
+        <%= @the_instrument.genre %>
+      </dd>
+
+      <dt>
+        Created at
+      </dt>
+      <dd>
+        <%= time_ago_in_words(@the_instrument.created_at) %> ago
+      </dd>
+
+      <dt>
+        Updated at
+      </dt>
+      <dd>
+        <%= time_ago_in_words(@the_instrument.updated_at) %> ago
+      </dd>
+    </dl>
+  </div>
+</div>
+
+<hr>
+
+
+<div>
+  <div>
+    <h2>
+      Edit instrument
+    </h2>
+
+    <form action="/modify_instrument/<%= @the_instrument.id %>"  method="post" >
+      <div>
+        <label for="instrument_name_box">
+          Instrument name
+        </label>
+
+        <input type="text" id="instrument_name_box" name="query_instrument_name" value="<%= @the_instrument.instrument_name %>">
+      </div>
+
+      <div>
+        <label for="genre_box">
+          Genre
+        </label>
+
+        <input type="text" id="genre_box" name="query_genre" value="<%= @the_instrument.genre %>">
+      </div>
+
+      <button>
+        Update instrument
+      </button>
+    </form>
+  </div>
+</div>
+
+<hr>

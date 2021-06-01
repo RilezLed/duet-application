@@ -1,0 +1,86 @@
+<div>
+  <div>
+    <h1>
+      Talent #<%= @the_talent.id %> details
+    </h1>
+
+    <div>
+      <div>
+        <a href="/talents">
+          Go back
+        </a>
+      </div>
+
+      <div>
+        <a href="/delete_talent/<%= @the_talent.id %>">
+          Delete talent
+        </a>
+      </div>
+    </div>
+
+    <dl>
+      <dt>
+        Musician
+      </dt>
+      <dd>
+        <%= @the_talent.musician_id %>
+      </dd>
+
+      <dt>
+        Instrument
+      </dt>
+      <dd>
+        <%= @the_talent.instrument_id %>
+      </dd>
+
+      <dt>
+        Created at
+      </dt>
+      <dd>
+        <%= time_ago_in_words(@the_talent.created_at) %> ago
+      </dd>
+
+      <dt>
+        Updated at
+      </dt>
+      <dd>
+        <%= time_ago_in_words(@the_talent.updated_at) %> ago
+      </dd>
+    </dl>
+  </div>
+</div>
+
+<hr>
+
+
+<div>
+  <div>
+    <h2>
+      Edit talent
+    </h2>
+
+    <form action="/modify_talent/<%= @the_talent.id %>"  method="post" >
+      <div>
+        <label for="musician_id_box">
+          Musician
+        </label>
+
+        <input type="text" id="musician_id_box" name="query_musician_id" value="<%= @the_talent.musician_id %>">
+      </div>
+
+      <div>
+        <label for="instrument_id_box">
+          Instrument
+        </label>
+
+        <input type="text" id="instrument_id_box" name="query_instrument_id" value="<%= @the_talent.instrument_id %>">
+      </div>
+
+      <button>
+        Update talent
+      </button>
+    </form>
+  </div>
+</div>
+
+<hr>

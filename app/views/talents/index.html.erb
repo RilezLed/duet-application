@@ -1,0 +1,102 @@
+<div>
+  <div>
+    <h1>
+      List of all talents
+    </h1>
+  </div>
+</div>
+
+<hr>
+
+<div>
+  <div>
+    <h2>
+      Add a new talent
+    </h2>
+
+    <form action="/insert_talent" method="post">
+      <div>
+        <label for="musician_id_box">
+          Musician
+        </label>
+
+        <input type="text" id="musician_id_box" name="query_musician_id">
+      </div>
+
+      <div>
+        <label for="instrument_id_box">
+          Instrument
+        </label>
+
+        <input type="text" id="instrument_id_box" name="query_instrument_id">
+      </div>
+
+      <button>
+        Create talent
+      </button>
+    </form>
+  </div>
+</div>
+
+<hr>
+<div>
+  <div>
+    <table>
+      <tr>
+        <th>
+          ID
+        </th>
+
+        <th>
+          Musician
+        </th>
+
+        <th>
+          Instrument
+        </th>
+
+        <th>
+          Created at
+        </th>
+
+        <th>
+          Updated at
+        </th>
+
+        <th>
+        </th>
+      </tr>
+
+      <% @list_of_talents.each do |a_talent| %>
+      <tr>
+        <td>
+          <%= a_talent.id %>
+        </td>
+
+        <td>
+          <%= a_talent.musician_id %>
+        </td>
+
+        <td>
+          <%= a_talent.instrument_id %>
+        </td>
+
+        <td>
+          <%= time_ago_in_words(a_talent.created_at) %> ago
+        </td>
+        <td>
+          <%= time_ago_in_words(a_talent.updated_at) %> ago
+        </td>
+
+        <td>
+          <a href="/talents/<%= a_talent.id %>">
+            Show details
+          </a>
+        </td>
+      </tr>
+      <% end %>
+    </table>
+  </div>
+</div>
+
+<hr>

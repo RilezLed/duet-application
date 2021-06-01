@@ -1,0 +1,116 @@
+<div>
+  <div>
+    <h1>
+      Member #<%= @the_member.id %> details
+    </h1>
+
+    <div>
+      <div>
+        <a href="/members">
+          Go back
+        </a>
+      </div>
+
+      <div>
+        <a href="/delete_member/<%= @the_member.id %>">
+          Delete member
+        </a>
+      </div>
+    </div>
+
+    <dl>
+      <dt>
+        Bandmate
+      </dt>
+      <dd>
+        <%= @the_member.bandmate_id %>
+      </dd>
+
+      <dt>
+        Duet
+      </dt>
+      <dd>
+        <%= @the_member.duet_id %>
+      </dd>
+
+      <dt>
+        Instrumnet
+      </dt>
+      <dd>
+        <%= @the_member.instrumnet_id %>
+      </dd>
+
+      <dt>
+        Open
+      </dt>
+      <dd>
+        <%= @the_member.open %>
+      </dd>
+
+      <dt>
+        Created at
+      </dt>
+      <dd>
+        <%= time_ago_in_words(@the_member.created_at) %> ago
+      </dd>
+
+      <dt>
+        Updated at
+      </dt>
+      <dd>
+        <%= time_ago_in_words(@the_member.updated_at) %> ago
+      </dd>
+    </dl>
+  </div>
+</div>
+
+<hr>
+
+
+<div>
+  <div>
+    <h2>
+      Edit member
+    </h2>
+
+    <form action="/modify_member/<%= @the_member.id %>"  method="post" >
+      <div>
+        <label for="bandmate_id_box">
+          Bandmate
+        </label>
+
+        <input type="text" id="bandmate_id_box" name="query_bandmate_id" value="<%= @the_member.bandmate_id %>">
+      </div>
+
+      <div>
+        <label for="duet_id_box">
+          Duet
+        </label>
+
+        <input type="text" id="duet_id_box" name="query_duet_id" value="<%= @the_member.duet_id %>">
+      </div>
+
+      <div>
+        <label for="instrumnet_id_box">
+          Instrumnet
+        </label>
+
+        <input type="text" id="instrumnet_id_box" name="query_instrumnet_id" value="<%= @the_member.instrumnet_id %>">
+      </div>
+
+      <div>
+        <input type="checkbox" id="open_box" name="query_open" value="1" <%= "checked" if @the_member.open %>>
+
+        <label for="open_box">
+            Open
+        </label>
+      </div>
+
+      <button>
+        Update member
+      </button>
+    </form>
+  </div>
+</div>
+
+<hr>
