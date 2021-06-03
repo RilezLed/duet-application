@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_06_01_035856) do
+ActiveRecord::Schema.define(version: 2021_06_03_093704) do
 
   create_table "duets", force: :cascade do |t|
     t.integer "creator_id"
@@ -31,7 +31,7 @@ ActiveRecord::Schema.define(version: 2021_06_01_035856) do
   create_table "members", force: :cascade do |t|
     t.integer "bandmate_id"
     t.integer "duet_id"
-    t.integer "instrumnet_id"
+    t.integer "instrument_id"
     t.boolean "open"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
