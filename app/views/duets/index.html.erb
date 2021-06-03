@@ -18,7 +18,7 @@
 
     <form action="/insert_duet" method="post">
       <div>
-        <input type="hidden" " name="query_creator_id" value="@current_user.id">
+        <input type="hidden" " name="query_creator_id" value="<%=@current_user.id%>">
       </div>
       <div>
         <label for="number_box">
@@ -64,9 +64,6 @@
   <div>
     <table>
       <tr>
-        <th>
-          ID
-        </th>
 
         <th>
           Creator
@@ -98,16 +95,13 @@
 
       <% @list_of_duets.each do |a_duet| %>
       <tr>
+
         <td>
-          <%= a_duet.id %>
+          <%= a_duet.creator.username %>
         </td>
 
         <td>
-          <%= a_duet.creator_id %>
-        </td>
-
-        <td>
-          <%= a_duet.song_id %>
+          <%= a_duet.song.name %>
         </td>
 
         <td>

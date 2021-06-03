@@ -21,18 +21,22 @@ class MembersController < ApplicationController
   end
 
   def create
+    num_bandmates = params.fetch("query_bandmate_id").length
+
+    num_bandmates.times do |an_index|
     the_member = Member.new
-    the_member.bandmate_id = params.fetch("query_bandmate_id")
-    the_member.duet_id = params.fetch("query_duet_id")
-    the_member.instrument_id = params.fetch("query_instrument_id")
-    the_member.open = params.fetch("query_open", false)
+    the_member.bandmate_id = params.fetch("query_bandmate_id").at(an_index)
+    the_member.duet_id = params.fetch("query_duet_id").at(an_index)
+    the_member.instrument_id = params.fetch("query_instrument_id").at(an_index)
+    the_member.open = params.fetch("query_open", false).at(an_index)
 
     if the_member.valid?
       the_member.save
-      redirect_to("/members", { :notice => "Member created successfully." })
     else
       redirect_to("/members", { :notice => "Member failed to create successfully." })
     end
+    end
+    redirect_to("/members", { :notice => "Member created successfully." })
   end
 
   def update
