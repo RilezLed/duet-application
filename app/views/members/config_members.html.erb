@@ -1,0 +1,42 @@
+<h1> Configuration Page for Duet <%=@the_duet.id %> slam </h1>
+
+
+<div>
+  <div>
+    <h2>
+      Add a new member
+    </h2>
+
+    <form action="/insert_member" method="post">
+    
+      <div>
+        <input type="hidden" id="bandmate_id_box" name="query_bandmate_id" value="nil">
+      </div>
+
+      <div>
+        <input type="hidden" id="duet_id_box" name="query_duet_id" value="1">
+      </div>
+    
+      <div>
+        <div>
+        <label for="instrument_id_box">
+          Instrument
+        </label>
+        <select name="query_instrument_id" id="instrument_id_box">
+          <% Instrument.all.each do |a_instrument| %>
+            <option value="<%=a_instrument.id%>"><%= a_instrument.instrument_name %></option>
+          <% end %>
+        </select>
+         </div>
+      </div>
+      <div>
+        <input type="hidden" id="open_box" name="query_open" value="1">
+      </div>
+    
+      <button>
+        Create members
+      </button>
+    
+    </form>
+  </div>
+</div>

@@ -1,4 +1,5 @@
 class DuetsController < ApplicationController
+  skip_before_action(:force_user_sign_in, { :only => [:index] })
   def index
     matching_duets = Duet.all
 
@@ -18,15 +19,17 @@ class DuetsController < ApplicationController
   end
 
   def create
-    the_duet = Duet.new
-    the_duet.creator_id = params.fetch("query_creator_id")
-    the_duet.song_id = params.fetch("query_song_id")
-    the_duet.private = params.fetch("query_private", false)
-    the_duet.looking = params.fetch("query_looking", false)
+    @the_duet = Duet.new
+    @the_duet.creator_id = params.fetch("query_creator_id")
+    @the_duet.song_id = params.fetch("query_song_id")
+    @the_duet.private = params.fetch("query_private", false)
+    @the_duet.looking = params.fetch("query_looking", false)
+    @number_bandmates = params.fetch("query_number_members", false).to_i
+    @members_array = Array.new
 
-    if the_duet.valid?
-      the_duet.save
-      redirect_to("/duets", { :notice => "Duet created successfully." })
+    if @the_duet.valid?
+      #@the_duet.save
+      render("/members/config_members", { :notice => "Duet created successfully." })
     else
       redirect_to("/duets", { :notice => "Duet failed to create successfully." })
     end

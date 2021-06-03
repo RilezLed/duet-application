@@ -66,6 +66,8 @@ Rails.application.routes.draw do
           
   # READ
   get("/members", { :controller => "members", :action => "index" })
+
+  get("/members/config_members", { :controller => "members", :action => "" })
   
   get("/members/:path_id", { :controller => "members", :action => "show" })
   

@@ -1,4 +1,5 @@
 class SongsController < ApplicationController
+  skip_before_action(:force_user_sign_in, { :only => [:index] })
   def index
     matching_songs = Song.all
 

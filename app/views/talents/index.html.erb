@@ -8,6 +8,7 @@
 
 <hr>
 
+<%if @current_user !=nil%>
 <div>
   <div>
     <h2>
@@ -16,19 +17,18 @@
 
     <form action="/insert_talent" method="post">
       <div>
-        <label for="musician_id_box">
-          Musician
-        </label>
-
-        <input type="text" id="musician_id_box" name="query_musician_id">
+        <input type="hidden" value="<%=@current_user.id%>" name="query_musician_id">
       </div>
 
       <div>
         <label for="instrument_id_box">
           Instrument
         </label>
-
-        <input type="text" id="instrument_id_box" name="query_instrument_id">
+        <select name="query_instrument_id" id="instrument_id_box">
+        <% Instrument.all.each do |a_instrument| %>
+            <option value="<%=a_instrument.id%>"><%= a_instrument.instrument_name %></option>
+          <% end %>
+        </select>
       </div>
 
       <button>
@@ -37,6 +37,7 @@
     </form>
   </div>
 </div>
+<% end %>
 
 <hr>
 <div>
@@ -74,11 +75,11 @@
         </td>
 
         <td>
-          <%= a_talent.musician_id %>
+          <%= a_talent.musician.username %>
         </td>
 
         <td>
-          <%= a_talent.instrument_id %>
+          <%= a_talent.instrument.instrument_name %>
         </td>
 
         <td>

@@ -1,4 +1,5 @@
 class MembersController < ApplicationController
+  skip_before_action(:force_user_sign_in, { :only => [:index] })
   def index
     matching_members = Member.all
 
@@ -6,6 +7,10 @@ class MembersController < ApplicationController
 
     render({ :template => "members/index.html.erb" })
   end
+
+  def config
+    render({ :template => "members/config_memebers.html.erb" })
+  end  
 
   def show
     the_id = params.fetch("path_id")
@@ -21,7 +26,7 @@ class MembersController < ApplicationController
     the_member = Member.new
     the_member.bandmate_id = params.fetch("query_bandmate_id")
     the_member.duet_id = params.fetch("query_duet_id")
-    the_member.instrumnet_id = params.fetch("query_instrumnet_id")
+    the_member.instrument_id = params.fetch("query_instrument_id")
     the_member.open = params.fetch("query_open", false)
 
     if the_member.valid?
