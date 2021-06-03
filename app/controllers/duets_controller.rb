@@ -28,7 +28,7 @@ class DuetsController < ApplicationController
     @members_array = Array.new
 
     if @the_duet.valid?
-      #@the_duet.save
+      @the_duet.save
       render("/members/config_members", { :notice => "Duet created successfully." })
     else
       redirect_to("/duets", { :notice => "Duet failed to create successfully." })

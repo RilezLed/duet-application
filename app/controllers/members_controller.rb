@@ -8,9 +8,7 @@ class MembersController < ApplicationController
     render({ :template => "members/index.html.erb" })
   end
 
-  def config
-    render({ :template => "members/config_memebers.html.erb" })
-  end  
+
 
   def show
     the_id = params.fetch("path_id")

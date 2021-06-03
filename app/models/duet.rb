@@ -11,4 +11,14 @@
 #  song_id    :integer
 #
 class Duet < ApplicationRecord
+
+  belongs_to(:creator, {
+    :class_name => "User",
+    :foreign_key => "creator_id"
+  })
+
+  belongs_to(:song, {
+    :class_name => "Song",
+    :foreign_key => "song_id"
+  })
 end
