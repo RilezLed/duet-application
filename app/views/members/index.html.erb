@@ -8,59 +8,13 @@
 
 <hr>
 
-<div>
-  <div>
-    <h2>
-      Add a new member
-    </h2>
 
-    <form action="/insert_member" method="post">
-      <div>
-        <label for="bandmate_id_box">
-          Bandmate
-        </label>
-
-        <input type="text" id="bandmate_id_box" name="query_bandmate_id">
-      </div>
-
-      <div>
-        <label for="duet_id_box">
-          Duet
-        </label>
-
-        <input type="text" id="duet_id_box" name="query_duet_id">
-      </div>
-
-      <div>
-        <label for="instrument_id_box">
-          instrument
-        </label>
-
-        <input type="text" id="instrument_id_box" name="query_instrument_id">
-      </div>
-
-      <div>
-        <input type="checkbox" id="open_box" name="query_open" value="1">
-
-        <label for="open_box">Open</label>
-      </div>
-
-      <button>
-        Create member
-      </button>
-    </form>
-  </div>
-</div>
 
 <hr>
 <div>
   <div>
     <table>
       <tr>
-        <th>
-          ID
-        </th>
-
         <th>
           Bandmate
         </th>
@@ -91,12 +45,9 @@
 
       <% @list_of_members.each do |a_member| %>
       <tr>
-        <td>
-          <%= a_member.id %>
-        </td>
 
         <td>
-          <%= a_member.bandmate_id %>
+          <%= a_member.bandmate.username%>
         </td>
 
         <td>

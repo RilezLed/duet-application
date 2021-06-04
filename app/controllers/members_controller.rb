@@ -32,11 +32,11 @@ class MembersController < ApplicationController
 
     if the_member.valid?
       the_member.save
+      redirect_to("/duets/#{the_member.duet_id}", { :notice => "Member created successfully." })
     else
-      redirect_to("/members", { :notice => "Member failed to create successfully." })
+      redirect_to("/duets/#{the_member.duet_id}", { :notice => "Member failed to create successfully." })
     end
-    end
-    redirect_to("/members", { :notice => "Member created successfully." })
+  end
   end
 
   def update
@@ -45,15 +45,15 @@ class MembersController < ApplicationController
 
     the_member.bandmate_id = params.fetch("query_bandmate_id")
     the_member.duet_id = params.fetch("query_duet_id")
-    the_member.instrumnet_id = params.fetch("query_instrumnet_id")
+    the_member.instrument_id = params.fetch("query_instrument_id")
     the_member.open = params.fetch("query_open", false)
 
     if the_member.valid?
       the_member.save
-      redirect_to("/members/#{the_member.id}", { :notice => "Member updated successfully."} )
     else
-      redirect_to("/members/#{the_member.id}", { :alert => "Member failed to update successfully." })
+      redirect_to("/duets/#{the_member.duet_id}", { :alert => "Member failed to update successfully." })
     end
+    redirect_to("/duets/#{the_member.duet_id}", { :notice => "Member updated successfully."} )
   end
 
   def destroy

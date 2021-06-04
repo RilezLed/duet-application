@@ -13,13 +13,18 @@
 class Request < ApplicationRecord
   belongs_to(:requester, {
     :class_name => "User",
-    :foreign_key => "requester_id",
+    :foreign_key => "requestor_id",
     :required => true
   })
   belongs_to(:group, {
-    :class_name => "member",
+    :class_name => "Member",
     :foreign_key => "group_id",
     :required => true
+  })
+
+ belongs_to(:instrument, {
+    :class_name => "Instrument",
+    :foreign_key => "instrument_id",
   })
 
   

@@ -47,6 +47,7 @@ Rails.application.routes.draw do
           
   # READ
   get("/requests", { :controller => "requests", :action => "index" })
+  get("/requests/confirm_update", { :controller => "requests", :action => "confirm" })
   
   get("/requests/:path_id", { :controller => "requests", :action => "show" })
   
@@ -103,6 +104,7 @@ Rails.application.routes.draw do
 
   # SIGN UP FORM
   get("/users", { :controller => "user_authentication", :action => "index" }) 
+get("/users/:path_id", { :controller => "user_authentication", :action => "show" }) 
   get("/user_sign_up", { :controller => "user_authentication", :action => "sign_up_form" })        
   # CREATE RECORD
   post("/insert_user", { :controller => "user_authentication", :action => "create"  })

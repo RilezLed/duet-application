@@ -25,4 +25,7 @@ class Member < ApplicationRecord
     :class_name => "Instrument",
     :foreign_key => "instrument_id"
   })
+
+  has_many(:requests, { :class_name => "Request", :foreign_key => "group_id" })
+
 end

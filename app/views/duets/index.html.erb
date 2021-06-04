@@ -9,6 +9,81 @@
 <hr>
 
 
+
+
+<hr>
+<div>
+  <div>
+    <table border="1">
+      <tr padding: 15px>
+
+        <th>
+          Creator
+        </th>
+
+        <th>
+          Song
+        </th>
+
+        <th>
+          Private
+        </th>
+
+        <th>
+          Looking
+        </th>
+
+        <th>
+          Created at
+        </th>
+
+        <th>
+          Updated at
+        </th>
+
+        <th>
+        </th>
+      </tr>
+
+      <% @list_of_duets.each do |a_duet| %>
+      <tr padding: 15px>
+
+        <td>
+          <%= a_duet.creator.username %>
+        </td>
+
+        <td>
+          <%= a_duet.song.name %>
+        </td>
+
+        <td>
+          <%= a_duet.private %>
+        </td>
+
+        <td>
+          <%= a_duet.looking %>
+        </td>
+
+        <td>
+          <%= time_ago_in_words(a_duet.created_at) %> ago
+        </td>
+        <td>
+          <%= time_ago_in_words(a_duet.updated_at) %> ago
+        </td>
+
+        <td>
+          <a href="/duets/<%= a_duet.id %>">
+            Show details
+          </a>
+        </td>
+      </tr>
+      <% end %>
+    </table>
+  </div>
+</div>
+
+<hr>
+
 <% if @current_user != nil %>
 <div>
   <div>
@@ -58,76 +133,3 @@
   </div>
 </div>
 <% end %> 
-
-<hr>
-<div>
-  <div>
-    <table>
-      <tr>
-
-        <th>
-          Creator
-        </th>
-
-        <th>
-          Song
-        </th>
-
-        <th>
-          Private
-        </th>
-
-        <th>
-          Looking
-        </th>
-
-        <th>
-          Created at
-        </th>
-
-        <th>
-          Updated at
-        </th>
-
-        <th>
-        </th>
-      </tr>
-
-      <% @list_of_duets.each do |a_duet| %>
-      <tr>
-
-        <td>
-          <%= a_duet.creator.username %>
-        </td>
-
-        <td>
-          <%= a_duet.song.name %>
-        </td>
-
-        <td>
-          <%= a_duet.private %>
-        </td>
-
-        <td>
-          <%= a_duet.looking %>
-        </td>
-
-        <td>
-          <%= time_ago_in_words(a_duet.created_at) %> ago
-        </td>
-        <td>
-          <%= time_ago_in_words(a_duet.updated_at) %> ago
-        </td>
-
-        <td>
-          <a href="/duets/<%= a_duet.id %>">
-            Show details
-          </a>
-        </td>
-      </tr>
-      <% end %>
-    </table>
-  </div>
-</div>
-
-<hr>

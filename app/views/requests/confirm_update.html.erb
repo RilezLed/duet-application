@@ -1,0 +1,18 @@
+<h1> Do you wish to confrim.. </h1>
+<h2> <%=@the_request.requester.username %> as your </h2>
+<h2> <%=@the_request.instrument.instrument_name %> for your Duet </h2>
+<h3> <%=@the_request.group.duet.song.name %> by <%=@the_request.group.duet.song.band %> </h2>
+<form action="/modify_member/<%=@the_request.group_id%>" method="post">
+<input type="hidden" name="query_bandmate_id" value="<%=@the_request.requester.id %>">
+<input type="hidden" name="query_duet_id" value="<%=@the_request.group.duet.id%>">
+<input type="hidden" name="query_instrument_id" value="<%=@the_request.instrument.id%>">
+<input type="hidden" name="query_open" value="false">
+<button>
+HELL YEAH!
+</button>
+</form>
+<form action="/delete_request/<%=@the_request.id%>" method="get">
+<button>
+NO WAY JOSE!
+</button>
+</form>

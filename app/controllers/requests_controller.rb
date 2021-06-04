@@ -19,34 +19,38 @@ class RequestsController < ApplicationController
   end
 
   def create
-    the_request = Request.new
-    the_request.requestor_id = params.fetch("query_requestor_id")
-    the_request.group_id = params.fetch("query_group_id")
-    the_request.instrument_id = params.fetch("query_instrument_id")
-    the_request.status = params.fetch("query_status")
+    @the_request = Request.new
+    @the_request.requestor_id = params.fetch("query_requestor_id")
+    @the_request.group_id = params.fetch("query_group_id")
+    @the_request.instrument_id = params.fetch("query_instrument_id")
+    @the_request.status = params.fetch("query_status")
 
-    if the_request.valid?
-      the_request.save
-      redirect_to("/requests", { :notice => "Request created successfully." })
+    if @the_request.valid?
+       @the_request.save
+        redirect_to("/requests", { :notice => "Request created successfully." })
     else
-      redirect_to("/requests", { :notice => "Request failed to create successfully." })
+      redirect_to("/requests", { :notice => "Request failed to create." })
     end
   end
 
   def update
     the_id = params.fetch("path_id")
-    the_request = Request.where({ :id => the_id }).at(0)
+    @the_request = Request.where({ :id => the_id }).at(0)
 
-    the_request.requestor_id = params.fetch("query_requestor_id")
-    the_request.group_id = params.fetch("query_group_id")
-    the_request.instrument_id = params.fetch("query_instrument_id")
-    the_request.status = params.fetch("query_status")
+    @the_request.requestor_id = params.fetch("query_requestor_id")
+    @the_request.group_id = params.fetch("query_group_id")
+    @the_request.instrument_id = params.fetch("query_instrument_id")
+    @the_request.status = params.fetch("query_status")
 
-    if the_request.valid?
-      the_request.save
-      redirect_to("/requests/#{the_request.id}", { :notice => "Request updated successfully."} )
+    if @the_request.valid?
+      @the_request.save
+      if @the_request.status == "accepted"
+      render("/requests/confirm_update.html.erb")
+      else
+      redirect_to("/requests", { :notice => "Request updated successfully."} )
+      end
     else
-      redirect_to("/requests/#{the_request.id}", { :alert => "Request failed to update successfully." })
+      redirect_to("/requests", { :alert => "Request failed to update." })
     end
   end
 
@@ -58,4 +62,5 @@ class RequestsController < ApplicationController
 
     redirect_to("/requests", { :notice => "Request deleted successfully."} )
   end
+
 end

@@ -1,0 +1,59 @@
+<h1> Rockstar <%=@the_user.username %>'s profile </h1>
+<h2> List of Talents</h2> 
+<table>
+<tr>
+<% if @the_user.talents.length == 0 && @current_user.id == @the_user.id%>
+Looks like you got no talent! <a href="talents"> Click here to Add Yo Skills </a>
+<% else %>
+<td>
+  Instrument
+</td>
+<td>
+  Style
+</td>
+<% end %>
+</tr>
+<% @the_user.talents.each do |a_talent| %>
+<tr>
+  <td><%= a_talent.instrument.instrument_name %></td>
+  <td><%= a_talent.instrument.genre %></td>
+  <td><a href="/delete_talent/<%=a_talent.id%>"> Forget this talent </a></td>
+</tr>
+
+<% if @current_user.id == @the_user.id %>
+<tr>
+<a href="/talents"> Add a Talent </a>
+</tr>
+<% end %>
+<% end %>
+</table>
+<hr>
+<h2> List of Duets created</h2>
+<table>
+<tr>
+<td>
+  Duet Song
+</td>
+<td>
+  Looking?
+</td>
+<td>
+</td>
+</tr>
+<% @the_user.duets.each do |a_duet| %>
+<tr>
+  <td><%= a_duet.song.name %></td>
+  <td><%= a_duet.looking %></td>
+  <td><a href="/duets/<%=a_duet.id%>">Ask to Jam!</a></td>
+</tr>
+
+<% end %>
+</table>
+
+<h2> List of Duets Participated </h2> 
+<% @the_user.groups do |a_member| %>
+<tr>
+  <td><%= a_member.duet.song.name %></td>
+  <td><%= a_member.instrument.instrument_name %></td>
+</tr>
+<% end %>

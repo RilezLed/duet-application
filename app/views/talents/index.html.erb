@@ -1,13 +1,50 @@
 <div>
   <div>
     <h1>
-      List of all talents
+      List of My talents
     </h1>
   </div>
 </div>
 
 <hr>
+<div>
+  <div>
+    <table>
+      <tr>
+        <% if @current_user.talents.length == 0%>
+          Looks like you got no talent! Add your skills below and start jammin'.
+        <% else %>
+        <th>
+          Instrument
+        </th>
+        <th>
+          Genre
+        </th>
 
+        <th>
+        </th>
+      </tr>
+      <% end %>
+      <% @current_user.talents.each do |a_talent| %>
+      <tr>
+        <td>
+          <%= a_talent.instrument.instrument_name %>
+        </td>
+        <td>
+          <%= a_talent.instrument.genre %>
+        </td>
+        <td>
+          <a href="/delete_talent/<%= a_talent.id %>">
+            Forget this talent
+          </a>
+        </td>
+      </tr>
+      <% end %>
+    </table>
+  </div>
+</div>
+
+<hr>
 <%if @current_user !=nil%>
 <div>
   <div>
@@ -38,66 +75,3 @@
   </div>
 </div>
 <% end %>
-
-<hr>
-<div>
-  <div>
-    <table>
-      <tr>
-        <th>
-          ID
-        </th>
-
-        <th>
-          Musician
-        </th>
-
-        <th>
-          Instrument
-        </th>
-
-        <th>
-          Created at
-        </th>
-
-        <th>
-          Updated at
-        </th>
-
-        <th>
-        </th>
-      </tr>
-
-      <% @list_of_talents.each do |a_talent| %>
-      <tr>
-        <td>
-          <%= a_talent.id %>
-        </td>
-
-        <td>
-          <%= a_talent.musician.username %>
-        </td>
-
-        <td>
-          <%= a_talent.instrument.instrument_name %>
-        </td>
-
-        <td>
-          <%= time_ago_in_words(a_talent.created_at) %> ago
-        </td>
-        <td>
-          <%= time_ago_in_words(a_talent.updated_at) %> ago
-        </td>
-
-        <td>
-          <a href="/talents/<%= a_talent.id %>">
-            Show details
-          </a>
-        </td>
-      </tr>
-      <% end %>
-    </table>
-  </div>
-</div>
-
-<hr>

@@ -1,8 +1,46 @@
 <div>
   <div>
     <h1>
-      Duet #<%= @the_duet.id %> details
+      <%= @the_duet.creator.username %>'s Duet for  <%= @the_duet.song.band %>'s "<%= @the_duet.song.name %>"
     </h1>
+
+    <table>
+      <tr>
+        <td>
+          Bandmate
+        </td>
+        <td> 
+          Instrument
+        </td>
+        <td>
+          Open
+        </td>
+        <td>
+        <td>
+      </tr>
+      <% @the_duet.members.each do |a_member| %>
+      <tr>
+        <% if a_member.bandmate_id != 3%>
+        <td><%=a_member.bandmate.username%></td>
+        <% else %>
+        <td> Nobody!</td>
+        <% end %>
+        <td><%=a_member.instrument.instrument_name%></td>
+        <td><%=a_member.open%></td>
+        <% if a_member.bandmate_id == 3%>
+         <td><form action="/insert_request" method="post">
+            <input type="hidden"  name="query_requestor_id" value="<%= @current_user.id%>">
+            <input type="hidden" name="query_group_id" value="<%= a_member.id %>">
+            <input type="hidden" name="query_instrument_id" value="<%= a_member.instrument.id %>">
+            <input type="hidden" name="query_status" value="pending">
+        <button>
+         Ask to Jam!
+        </button>
+         </form></td>
+        <% end %>
+      </tr>
+      <% end %>
+    </table>
 
     <div>
       <div>
@@ -10,57 +48,17 @@
           Go back
         </a>
       </div>
-
+      
+      <% if @current_user.id == @the_duet.creator.id %>
       <div>
         <a href="/delete_duet/<%= @the_duet.id %>">
           Delete duet
         </a>
       </div>
+      <% end %>
     </div>
 
-    <dl>
-      <dt>
-        Creator
-      </dt>
-      <dd>
-        <%= @the_duet.creator_id %>
-      </dd>
 
-      <dt>
-        Song
-      </dt>
-      <dd>
-        <%= @the_duet.song_id %>
-      </dd>
-
-      <dt>
-        Private
-      </dt>
-      <dd>
-        <%= @the_duet.private %>
-      </dd>
-
-      <dt>
-        Looking
-      </dt>
-      <dd>
-        <%= @the_duet.looking %>
-      </dd>
-
-      <dt>
-        Created at
-      </dt>
-      <dd>
-        <%= time_ago_in_words(@the_duet.created_at) %> ago
-      </dd>
-
-      <dt>
-        Updated at
-      </dt>
-      <dd>
-        <%= time_ago_in_words(@the_duet.updated_at) %> ago
-      </dd>
-    </dl>
   </div>
 </div>
 
@@ -69,27 +67,18 @@
 
 <div>
   <div>
+    <% if @current_user.id == @the_duet.creator.id %>
     <h2>
       Edit duet
     </h2>
 
     <form action="/modify_duet/<%= @the_duet.id %>"  method="post" >
       <div>
-        <label for="creator_id_box">
-          Creator
-        </label>
-
-        <input type="text" id="creator_id_box" name="query_creator_id" value="<%= @the_duet.creator_id %>">
+        <input type="hidden" id="creator_id_box" name="query_creator_id" value="<%= @the_duet.creator_id %>">
       </div>
-
       <div>
-        <label for="song_id_box">
-          Song
-        </label>
-
-        <input type="text" id="song_id_box" name="query_song_id" value="<%= @the_duet.song_id %>">
+        <input type="hidden" id="song_id_box" name="query_song_id" value="<%= @the_duet.song_id %>">
       </div>
-
       <div>
         <input type="checkbox" id="private_box" name="query_private" value="1" <%= "checked" if @the_duet.private %>>
 
@@ -111,6 +100,7 @@
       </button>
     </form>
   </div>
+  <% end %>
 </div>
 
 <hr>
