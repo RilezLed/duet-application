@@ -1,5 +1,8 @@
 class DuetsController < ApplicationController
   skip_before_action(:force_user_sign_in, { :only => [:index] })
+  
+
+
   def index
     matching_duets = Duet.all
 
@@ -56,8 +59,8 @@ class DuetsController < ApplicationController
     the_id = params.fetch("path_id")
     the_duet = Duet.where({ :id => the_id }).at(0)
 
+    the_duet.members.destroy_all
     the_duet.destroy
-
     redirect_to("/duets", { :notice => "Duet deleted successfully."} )
   end
 end

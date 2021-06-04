@@ -17,5 +17,7 @@ class User < ApplicationRecord
   has_many(:talents, { :class_name => "Talent", :foreign_key => "musician_id" })
   has_many(:duets, { :class_name => "Duet", :foreign_key => "creator_id" })
   has_many(:groups, { :class_name => "Member", :foreign_key => "bandmate_id" })
+  has_many(:requests, { :class_name => "Request", :foreign_key => "requestor_id" })
+  
  
 end

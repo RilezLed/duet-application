@@ -45,13 +45,27 @@ Looks like you got no talent! <a href="talents"> Click here to Add Yo Skills </a
   <td><%= a_duet.song.name %></td>
   <td><%= a_duet.looking %></td>
   <td><a href="/duets/<%=a_duet.id%>">Ask to Jam!</a></td>
+  <% if @current_user.id == @the_user.id %>
+  <td><a href="/delete_duet/<%=a_duet.id%>">Delete Duet</a></td>
+  <% end %>
 </tr>
 
 <% end %>
 </table>
 
-<h2> List of Duets Participated </h2> 
-<% @the_user.groups do |a_member| %>
+<h2> List of Duets Participated </h2>
+<table>
+<tr>
+<td>
+  Duet Song
+</td>
+<td>
+  Instrument
+</td>
+<td>
+</td>
+</tr>
+<% @the_user.groups.each do |a_member| %>
 <tr>
   <td><%= a_member.duet.song.name %></td>
   <td><%= a_member.instrument.instrument_name %></td>

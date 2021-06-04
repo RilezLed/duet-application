@@ -9,45 +9,7 @@
 <hr>
 
 
-<% if @current_user != nil %>
-<div>
-  <div>
-    <h2>
-      Add a new song
-    </h2>
 
-    <form action="/insert_song" method="post">
-      <div>
-        <label for="name_box">
-          Name
-        </label>
-
-        <input type="text" id="name_box" name="query_name">
-      </div>
-
-      <div>
-        <label for="band_box">
-          Band
-        </label>
-
-        <input type="text" id="band_box" name="query_band">
-      </div>
-
-      <div>
-        <label for="genre_box">
-          Genre
-        </label>
-
-        <input type="text" id="genre_box" name="query_genre">
-      </div>
-
-      <button>
-        Create song
-      </button>
-    </form>
-  </div>
-</div>
-<% end %>
 
 <hr>
 <div>
@@ -119,3 +81,42 @@
 </div>
 
 <hr>
+<% if @current_user != nil %>
+<div>
+  <div>
+    <h2>
+      Add a new song
+    </h2>
+
+    <form action="/insert_song" method="post">
+      <div>
+        <label for="name_box">
+          Name
+        </label>
+
+        <input type="text" id="name_box" name="query_name">
+      </div>
+
+      <div>
+        <label for="band_box">
+          Band
+        </label>
+
+        <input type="text" id="band_box" name="query_band">
+      </div>
+
+      <div>
+        <label for="genre_box">
+          Genre
+        </label>
+
+        <input type="text" id="genre_box" name="query_genre">
+      </div>
+
+      <button>
+        Create song
+      </button>
+    </form>
+  </div>
+</div>
+<% end %>

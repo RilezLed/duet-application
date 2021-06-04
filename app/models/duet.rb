@@ -21,4 +21,6 @@ class Duet < ApplicationRecord
     :class_name => "Song",
     :foreign_key => "song_id"
   })
+
+  has_many(:requests, { :through => :members, :source => :requests })
 end

@@ -46,22 +46,23 @@
         </th>
       </tr>
 
-      <% @list_of_requests.each do |a_request| %>
+      <% @current_user.duets.each do |a_duet| %>
+      <% a_duet.requests.each do |a_request| %>
       <tr>
         <td>
           <%= a_request.id %>
         </td>
 
         <td>
-          <%= a_request.requestor_id %>
+          <%= a_request.requester.username %>
         </td>
 
         <td>
-          <%= a_request.group_id %>
+          <%= a_request.group.duet.song.name %>
         </td>
 
         <td>
-          <%= a_request.instrument_id %>
+          <%= a_request.instrument.instrument_name %>
         </td>
 
         <td>
@@ -95,6 +96,7 @@
         </td>
       </tr>
       <% end %>
+      <% end %>
     </table>
   </div>
 </div>
@@ -112,12 +114,10 @@
     <table>
       <tr>
         <th>
-          ID
+          Creator
         </th>
 
-        <th>
-          Requestor
-        </th>
+        
 
         <th>
           Group
@@ -143,22 +143,20 @@
         </th>
       </tr>
 
-      <% @list_of_requests.each do |a_request| %>
+      <% @current_user.requests.each do |a_request| %>
       <tr>
         <td>
-          <%= a_request.id %>
+          <%= a_request.group.duet.creator.username %>
+        </td>
+
+        
+
+        <td>
+          <%= a_request.group.duet.song.name%>
         </td>
 
         <td>
-          <%= a_request.requestor_id %>
-        </td>
-
-        <td>
-          <%= a_request.group_id %>
-        </td>
-
-        <td>
-          <%= a_request.instrument_id %>
+          <%= a_request.instrument.instrument_name %>
         </td>
 
         <td>
